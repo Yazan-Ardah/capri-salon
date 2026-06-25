@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capri Salon Barbershop | Amman, Jordan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C8972B;
+      --gold-light: #E8B84B;
+      --gold-dark: #9A6E10;
+      --black: #0D0D0D;
+      --dark: #141414;
+      --card: #1A1A1A;
+      --border: rgba(200,151,43,0.25);
+      --text: #F5F0E8;
+      --muted: #A09580;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    html[lang="ar"] body {
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+    }
+
+    /* LANG TOGGLE */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 0.5px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      font-family: inherit;
+    }
+
+    .lang-toggle button.active {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .lang-toggle button:hover:not(.active) { color: var(--gold); }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--black) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      letter-spacing: 0.02em !important;
+      text-transform: none !important;
+    }
+
+    .nav-cta:hover { background: var(--gold-light); color: var(--black) !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--gold); display: block; transition: 0.3s; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: radial-gradient(ellipse 80% 60% at 50% 60%, rgba(200,151,43,0.07) 0%, transparent 70%), var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8972B' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    .hero-inner { position: relative; max-width: 720px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(200,151,43,0.12);
+      border: 0.5px solid var(--border);
+      color: var(--gold-light);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    html[lang="ar"] .hero-badge { letter-spacing: 0; }
+
+    .stars-inline { color: var(--gold); font-size: 0.9rem; }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      color: var(--white);
+    }
+
+    html[lang="ar"] .hero h1 {
+      font-family: 'Cairo', sans-serif;
+      line-height: 1.3;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+    /* SECTION COMMONS */
+    section { padding: 5rem 2rem; }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    html[lang="ar"] .section-label { letter-spacing: 0; }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    html[lang="ar"] .section-title { font-family: 'Cairo', sans-serif; }
+
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto 3.5rem;
+      font-weight: 300;
+    }
+
+    .divider {
+      width: 50px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem auto 0;
+    }
+
+    /* STATS */
+    .stats {
+      background: var(--card);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      padding: 3rem 2rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label { color: var(--muted); font-size: 0.875rem; margin-top: 0.4rem; font-weight: 400; }
+
+    /* SERVICES */
+    .services { background: var(--black); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--card);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .service-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(200,151,43,0.12);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    html[lang="ar"] .service-card h3 { font-family: 'Cairo', sans-serif; }
+
+    .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+    .service-tag {
+      display: inline-block;
+      background: rgba(200,151,43,0.1);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-top: 0.75rem;
+    }
+
+    /* ABOUT */
+    .about { background: var(--black); }
+
+    .about-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      background: var(--card);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .about-visual::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 2rem; right: 2rem;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .about-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .about-mgr { margin-top: 1.25rem; color: var(--muted); font-size: 0.875rem; }
+    .about-mgr strong { color: var(--text); font-weight: 500; }
+
+    .about-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+
+    html[lang="ar"] .about-content h2 { font-family: 'Cairo', sans-serif; line-height: 1.4; }
+
+    .about-content p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
+
+    .about-features { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .about-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .about-features li::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      background: rgba(200,151,43,0.15);
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4l2.5 2.5L9 1' stroke='%23C8972B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* INFO */
+    .info { background: var(--card); border-top: 0.5px solid var(--border); }
+
+    .info-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .info-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    html[lang="ar"] .info-box h3 { font-family: 'Cairo', sans-serif; }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      font-size: 0.9rem;
+      border-bottom: 0.5px solid rgba(255,255,255,0.05);
+    }
+
+    .info-row:last-child { border-bottom: none; }
+    .info-row .day { color: var(--muted); }
+    .info-row .time { color: var(--text); font-weight: 500; }
+    .info-row .open { color: #4CAF50; font-weight: 500; }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 0.5px solid rgba(255,255,255,0.05);
+      font-size: 0.9rem;
+    }
+
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(200,151,43,0.1);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .contact-item a { color: var(--gold-light); text-decoration: none; }
+    .contact-item a:hover { text-decoration: underline; }
+    .contact-item p { color: var(--muted); }
+
+    /* REVIEWS */
+    .reviews { background: var(--dark); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .review-card {
+      background: var(--card);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .review-stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.75rem; }
+
+    .review-text {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    html[lang="ar"] .review-text { font-style: normal; }
+
+    .review-author { color: var(--text); font-size: 0.85rem; font-weight: 500; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--black);
+      padding: 5rem 2rem;
+      text-align: center;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    html[lang="ar"] .cta-section h2 { font-family: 'Cairo', sans-serif; }
+
+    .cta-section p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--card);
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    footer p { color: var(--muted); font-size: 0.8rem; }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--muted); font-size: 0.8rem; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* About label left-align */
+    .about-label-left { text-align: left; margin-bottom: 0.5rem; }
+    html[lang="ar"] .about-label-left { text-align: right; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; flex-direction: column; background: var(--dark); padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 0.5px solid var(--border); }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .info-grid { grid-template-columns: 1fr; }
+      nav { padding: 1rem 1.5rem; }
+    }
+
+    /* Transition for smooth lang switch */
+    body { transition: opacity 0.15s; }
+    body.switching { opacity: 0; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Capri Salon</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#services" data-en="Services" data-ar="خدماتنا">Services</a></li>
+    <li><a href="#about" data-en="About" data-ar="من نحن">About</a></li>
+    <li><a href="#reviews" data-en="Reviews" data-ar="التقييمات">Reviews</a></li>
+    <li><a href="#info" data-en="Hours" data-ar="أوقات العمل">Hours</a></li>
+    <li><a href="tel:+962785065435" class="nav-cta" data-en="Book Now" data-ar="احجز الآن">Book Now</a></li>
+  </ul>
+  <div class="nav-center">
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-ar" onclick="setLang('ar')">ع</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="stars-inline">★★★★★</span>
+      <span data-en="4.9 · 513 Google Reviews" data-ar="٤.٩ · ٥١٣ تقييم على جوجل">4.9 · 513 Google Reviews</span>
+    </div>
+    <h1 data-en="Where Style Meets <span>Craftsmanship</span>" data-ar="حيث الأناقة تلتقي <span>بالإتقان</span>">Where Style Meets <span>Craftsmanship</span></h1>
+    <p data-en="Amman's premier barbershop — precision cuts, VIP grooming, and laser skin care by expert hands since day one." data-ar="صالون حلاقة عمّان الأول — قصات دقيقة، عناية VIP، وتنظيف البشرة بالليزر على يد محترفين منذ اليوم الأول.">Amman's premier barbershop — precision cuts, VIP grooming, and laser skin care by expert hands since day one.</p>
+    <div class="hero-btns">
+      <a href="tel:+962785065435" class="btn-primary" data-en="Call to Book" data-ar="اتصل للحجز">Call to Book</a>
+      <a href="#services" class="btn-outline" data-en="Explore Services" data-ar="استعرض خدماتنا">Explore Services</a>
+    </div>
+  </div>
+  <div class="hero-scroll" data-en="Scroll" data-ar="للأسفل">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-number">4.9★</div>
+      <div class="stat-label" data-en="Google Rating" data-ar="تقييم جوجل">Google Rating</div>
+    </div>
+    <div>
+      <div class="stat-number">513+</div>
+      <div class="stat-label" data-en="Happy Clients" data-ar="عميل سعيد">Happy Clients</div>
+    </div>
+    <div>
+      <div class="stat-number">15+</div>
+      <div class="stat-label" data-en="Hours Open Daily" data-ar="ساعة عمل يومياً">Hours Open Daily</div>
+    </div>
+    <div>
+      <div class="stat-number">VIP</div>
+      <div class="stat-label" data-en="Private Suite" data-ar="جناح خاص">Private Suite</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <p class="section-label" data-en="What We Offer" data-ar="ما نقدمه">What We Offer</p>
+  <h2 class="section-title" data-en="Our Services" data-ar="خدماتنا">Our Services</h2>
+  <div class="divider"></div>
+  <p class="section-sub" data-en="From sharp fades to full grooming experiences — we've got every detail covered." data-ar="من أحدث القصات إلى تجارب العناية الكاملة — نحن نهتم بكل التفاصيل.">From sharp fades to full grooming experiences — we've got every detail covered.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✂️</div>
+      <h3 data-en="Haircut & Styling" data-ar="قص وتصفيف الشعر">Haircut & Styling</h3>
+      <p data-en="Precision cuts tailored to your face shape and lifestyle by our expert barbers." data-ar="قصات دقيقة مصممة لتناسب شكل وجهك وأسلوب حياتك على يد حلاقين محترفين.">Precision cuts tailored to your face shape and lifestyle by our expert barbers.</p>
+      <span class="service-tag" data-en="Classic & Modern" data-ar="كلاسيكي وعصري">Classic & Modern</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🪒</div>
+      <h3 data-en="Beard Grooming" data-ar="العناية باللحية">Beard Grooming</h3>
+      <p data-en="Traditional shaves, beard sculpting and hot towel treatments for the ultimate finish." data-ar="حلاقة تقليدية، تشكيل اللحية، وعلاج المنشفة الساخنة للمظهر المثالي.">Traditional shaves, beard sculpting and hot towel treatments for the ultimate finish.</p>
+      <span class="service-tag" data-en="Signature" data-ar="مميز">Signature</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👑</div>
+      <h3 data-en="VIP Suite" data-ar="الجناح VIP">VIP Suite</h3>
+      <p data-en="A private, luxury experience for those who want the best. Personalized and discreet." data-ar="تجربة فاخرة وخاصة لمن يريد الأفضل. شخصية وبتكتم تام.">A private, luxury experience for those who want the best. Personalized and discreet.</p>
+      <span class="service-tag" data-en="Premium" data-ar="فاخر">Premium</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3 data-en="Laser Skin Care" data-ar="تنظيف البشرة بالليزر">Laser Skin Care</h3>
+      <p data-en="Professional skin cleaning and laser treatment for a fresh, clear complexion." data-ar="تنظيف البشرة بالليزر على يد متخصصين للحصول على بشرة نضرة وصافية.">Professional skin cleaning and laser treatment for a fresh, clear complexion.</p>
+      <span class="service-tag" data-en="Specialist" data-ar="متخصص">Specialist</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🐟</div>
+      <h3 data-en="DR Fish Foot Therapy" data-ar="علاج القدم DR Fish">DR Fish Foot Therapy</h3>
+      <p data-en="Relaxing and rejuvenating fish spa foot treatment for tired feet." data-ar="علاج سبا بالأسماك للأقدام لمنحها الراحة والتجديد.">Relaxing and rejuvenating fish spa foot treatment for tired feet.</p>
+      <span class="service-tag" data-en="Wellness" data-ar="عافية">Wellness</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧒</div>
+      <h3 data-en="Kids Specialist" data-ar="متخصص الأطفال">Kids Specialist</h3>
+      <p data-en="A gentle, patient barber dedicated to making your child's cut fun and easy." data-ar="حلاق لطيف وصبور مخصص لجعل تجربة طفلك ممتعة وسهلة.">A gentle, patient barber dedicated to making your child's cut fun and easy.</p>
+      <span class="service-tag" data-en="Family" data-ar="عائلي">Family</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <h3 data-en="Home & Hospital Visits" data-ar="زيارات منزلية وللمستشفيات">Home & Hospital Visits</h3>
+      <p data-en="We come to you — at home or in hospital, our team is always ready to serve." data-ar="نأتي إليك — في المنزل أو المستشفى، فريقنا دائماً على أتم الاستعداد لخدمتك.">We come to you — at home or in hospital, our team is always ready to serve.</p>
+      <span class="service-tag" data-en="Mobile" data-ar="متنقل">Mobile</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-logo-text">Capri<br>Salon</div>
+      <div class="about-mgr">
+        <p style="margin-top:1rem; font-size:1rem;">✦ ✦ ✦</p>
+        <p style="margin-top:0.75rem;" data-en="Managed by" data-ar="تحت إدارة">Managed by</p>
+        <p><strong>ناصر الرماحي</strong></p>
+      </div>
+      <div style="margin-top:1.5rem; padding-top:1.25rem; border-top:0.5px solid rgba(200,151,43,0.2);">
+        <p style="color:var(--gold); font-size:0.8rem; letter-spacing:0.05em; font-weight:500;" data-en="Amman, Jordan" data-ar="عمّان، الأردن">Amman, Jordan</p>
+        <p style="color:var(--muted); font-size:0.8rem; margin-top:0.3rem;" data-en="Maqadisho St. · Open until 1:30 AM" data-ar="شارع مقاديشو · يفتح حتى ١:٣٠ صباحاً">Maqadisho St. · Open until 1:30 AM</p>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <p class="section-label about-label-left" data-en="About Us" data-ar="من نحن">About Us</p>
+      <h2 data-en="More Than a Haircut — A Full Experience" data-ar="أكثر من مجرد قصة شعر — تجربة متكاملة">More Than a Haircut — A Full Experience</h2>
+      <p data-en="At Capri Salon Barbershop, we believe grooming is an art form. Our team of skilled barbers and specialists is dedicated to delivering top-tier results in a welcoming, professional atmosphere." data-ar="في كابري صالون، نؤمن بأن العناية الشخصية فن. فريقنا من الحلاقين والمتخصصين المهرة مكرّس لتقديم نتائج استثنائية في أجواء مرحبة واحترافية.">At Capri Salon Barbershop, we believe grooming is an art form. Our team of skilled barbers and specialists is dedicated to delivering top-tier results in a welcoming, professional atmosphere.</p>
+      <p data-en="We serve every client with care — whether you walk in, call for a home visit, or need us at a hospital bedside. No appointment? No problem. Surprises are always on the way." data-ar="نخدم كل عميل باهتمام — سواء حضرت بنفسك، أو طلبت زيارة منزلية، أو احتجتنا في المستشفى. بدون موعد؟ لا مشكلة. المفاجآت دائماً قادمة.">We serve every client with care — whether you walk in, call for a home visit, or need us at a hospital bedside. No appointment? No problem. Surprises are always on the way.</p>
+      <ul class="about-features">
+        <li data-en="Open 10 AM – 12 AM daily (late night 1:30 AM)" data-ar="مفتوح من ١٠ صباحاً حتى ١٢ ليلاً (حتى ١:٣٠ ليلاً الجمعة)">Open 10 AM – 12 AM daily (late night 1:30 AM)</li>
+        <li data-en="Home & hospital visit service available" data-ar="خدمة الزيارة المنزلية والمستشفى متاحة">Home & hospital visit service available</li>
+        <li data-en="Dedicated kids' barber specialist" data-ar="حلاق متخصص مخصص للأطفال">Dedicated kids' barber specialist</li>
+        <li data-en="VIP private suite for premium experience" data-ar="جناح VIP خاص لتجربة فاخرة">VIP private suite for premium experience</li>
+        <li data-en="Laser skin care specialists on-site" data-ar="متخصصون في تنظيف البشرة بالليزر">Laser skin care specialists on-site</li>
+        <li data-en="DR Fish foot therapy section" data-ar="قسم علاج القدم DR Fish">DR Fish foot therapy section</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <p class="section-label" data-en="Client Reviews" data-ar="آراء العملاء">Client Reviews</p>
+  <h2 class="section-title" data-en="What People Say" data-ar="ماذا يقول عملاؤنا">What People Say</h2>
+  <div class="divider"></div>
+  <p class="section-sub" data-en="Trusted by hundreds of clients across Amman with a near-perfect 4.9-star rating." data-ar="يثق بنا مئات العملاء في عمّان بتقييم شبه مثالي ٤.٩ نجمة.">Trusted by hundreds of clients across Amman with a near-perfect 4.9-star rating.</p>
+
+  <div class="reviews-grid" id="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-en='"I\'ve been coming here for a while now and I\'m always impressed with the quality of service. The barber really takes the time to understand exactly what you want and delivers a precise, clean cut every time. Attention to detail is top-notch, and the atmosphere is relaxed and welcoming. Highly recommend to anyone looking for a reliable and skilled barber."' data-ar='"أتردد على هذا المحل منذ فترة وأنا دائماً مبهور بجودة الخدمة. الحلاق يأخذ وقته ليفهم بالضبط ما تريده ويقدم قصة نظيفة ودقيقة في كل مرة. الاهتمام بالتفاصيل على أعلى مستوى، والأجواء مريحة ومرحبة. أنصح به بشدة لكل من يبحث عن حلاق موثوق ومحترف."'>"I've been coming here for a while now and I'm always impressed with the quality of service. The barber really takes the time to understand exactly what you want and delivers a precise, clean cut every time. Attention to detail is top-notch, and the atmosphere is relaxed and welcoming. Highly recommend to anyone looking for a reliable and skilled barber."</p>
+      <div style="margin-top:0.5rem; font-size:0.78rem; color:var(--gold); margin-bottom:0.75rem;" data-en="Hairstyling · Beard trim" data-ar="تصفيف الشعر · تهذيب اللحية">Hairstyling · Beard trim</div>
+      <div class="review-author" data-en="Akash Qadeer · Google Review" data-ar="أكاش قادير · تقييم جوجل">Akash Qadeer · Google Review</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-en='"One of the few best barbershops in town! Clean, professional, and the barbers really know their craft. Sharp fades, great attention to detail, and a relaxed vibe. I left looking fresh and feeling great. Highly recommend! Coming again inshallah 🙏"' data-ar='"من أفضل صالونات الحلاقة في المدينة! نظيف، احترافي، والحلاقون يتقنون عملهم حقاً. فيدات حادة، اهتمام كبير بالتفاصيل، وأجواء هادئة. خرجت بمظهر منعش وشعور رائع. أنصح به بشدة! راجع إن شاء الله 🙏"'>"One of the few best barbershops in town! Clean, professional, and the barbers really know their craft. Sharp fades, great attention to detail, and a relaxed vibe. I left looking fresh and feeling great. Highly recommend! Coming again inshallah 🙏"</p>
+      <div style="margin-top:0.5rem; font-size:0.78rem; color:var(--gold); margin-bottom:0.75rem;" data-en="Hairstyling" data-ar="تصفيف الشعر">Hairstyling</div>
+      <div class="review-author" data-en="Hamza Taqatqa · Google Review" data-ar="حمزة تقاتقة · تقييم جوجل">Hamza Taqatqa · Google Review</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-en='"I\'ve been to many barbershops, but this one is truly exceptional! The quality of the haircut is top-notch, and the prices are incredibly reasonable. He has all services needed in a barbershop. I especially appreciate the use of disposable towels, which adds an extra level of hygiene. Highly recommend!"' data-ar='"زرت كثيراً من صالونات الحلاقة، لكن هذا استثنائي حقاً! جودة القصة على أعلى مستوى والأسعار معقولة جداً. يوفر كل الخدمات التي تحتاجها. أقدّر بشكل خاص استخدام المناشف الورقية التي تضيف مستوى إضافياً من النظافة. أنصح به بشدة!"'>"I've been to many barbershops, but this one is truly exceptional! The quality of the haircut is top-notch, and the prices are incredibly reasonable. He has all services needed in a barbershop. I especially appreciate the use of disposable towels, which adds an extra level of hygiene. Highly recommend!"</p>
+      <div style="margin-top:0.5rem; font-size:0.78rem; color:var(--gold); margin-bottom:0.75rem;" data-en="Beard trim · Groom packages · Scissor cut · Hairstyling" data-ar="تهذيب اللحية · باقات العريس · قص بالمقص · تصفيف الشعر">Beard trim · Groom packages · Scissor cut · Hairstyling</div>
+      <div class="review-author" data-en="Abdulrahman Jundi · Google Review" data-ar="عبدالرحمن الجندي · تقييم جوجل">Abdulrahman Jundi · Google Review</div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:2.5rem;">
+    <a href="https://g.co/kgs/caprisalon" target="_blank" class="btn-outline" style="display:inline-block;" data-en="Read All Reviews on Google ↗" data-ar="اقرأ جميع التقييمات على جوجل ↗">Read All Reviews on Google ↗</a>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="info" id="info">
+  <div class="info-grid">
+    <div class="info-box">
+      <h3 data-en="Hours" data-ar="أوقات العمل">Hours</h3>
+      <div class="info-row">
+        <span class="day" data-en="Saturday – Thursday" data-ar="السبت – الخميس">Saturday – Thursday</span>
+        <span class="time">10:00 AM – 12:00 AM</span>
+      </div>
+      <div class="info-row">
+        <span class="day" data-en="Friday" data-ar="الجمعة">Friday</span>
+        <span class="time">10:00 AM – 1:30 AM</span>
+      </div>
+      <div class="info-row" style="margin-top:1rem; padding-top:1rem; border-top:0.5px solid var(--border);">
+        <span class="day" style="color:var(--muted);" data-en="Status" data-ar="الحالة">Status</span>
+        <span class="open" data-en="● Open Now" data-ar="● مفتوح الآن">● Open Now</span>
+      </div>
+      <p style="margin-top:1.25rem; font-size:0.82rem; color:var(--muted); line-height:1.6;" data-en="Home & hospital visits available during working hours upon request. Call to arrange." data-ar="الزيارات المنزلية والمستشفيات متاحة خلال ساعات العمل عند الطلب. اتصل للترتيب.">Home & hospital visits available during working hours upon request. Call to arrange.</p>
+    </div>
+
+    <div class="info-box">
+      <h3 data-en="Find Us" data-ar="موقعنا">Find Us</h3>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <p style="color:var(--text); font-weight:500; margin-bottom:0.2rem;" data-en="Address" data-ar="العنوان">Address</p>
+          <p data-en="Maqadisho St., beside Lilium Dry Clean, Amman, Jordan" data-ar="شارع مقاديشو، بجانب دراي كلين ليليوم، عمّان، الأردن">Maqadisho St., beside Lilium Dry Clean, Amman, Jordan</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <p style="color:var(--text); font-weight:500; margin-bottom:0.2rem;" data-en="Phone" data-ar="الهاتف">Phone</p>
+          <a href="tel:+962785065435">+962 78 506 5435</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">⭐</div>
+        <div>
+          <p style="color:var(--text); font-weight:500; margin-bottom:0.2rem;" data-en="Rating" data-ar="التقييم">Rating</p>
+          <p data-en="4.9 / 5.0 · 513 Google Reviews" data-ar="٤.٩ / ٥.٠ · ٥١٣ تقييم على جوجل">4.9 / 5.0 · 513 Google Reviews</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2 data-en="Ready for Your Best Look?" data-ar="مستعد لأفضل إطلالة؟">Ready for Your Best Look?</h2>
+  <p data-en="Walk in or call ahead — our team is ready to serve you from 10 AM until midnight." data-ar="تفضل أو اتصل مسبقاً — فريقنا جاهز لخدمتك من العاشرة صباحاً حتى منتصف الليل.">Walk in or call ahead — our team is ready to serve you from 10 AM until midnight.</p>
+  <a href="tel:+962785065435" class="btn-primary" style="font-size:1.05rem; padding:1rem 2.5rem;" data-en="Call Now · +962 78 506 5435" data-ar="اتصل الآن · 5435 506 78 962+">Call Now · +962 78 506 5435</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Capri Salon Barbershop</a>
+  <p data-en="© 2025 Capri Salon · Amman, Jordan · Managed by Nasser Al Ramahi" data-ar="© ٢٠٢٥ كابري صالون · عمّان، الأردن · تحت إدارة ناصر الرماحي">© 2025 Capri Salon · Amman, Jordan · Managed by Nasser Al Ramahi</p>
+  <div class="footer-links">
+    <a href="#services" data-en="Services" data-ar="الخدمات">Services</a>
+    <a href="#about" data-en="About" data-ar="من نحن">About</a>
+    <a href="#info" data-en="Hours" data-ar="الأوقات">Hours</a>
+    <a href="tel:+962785065435" data-en="Call" data-ar="اتصل">Call</a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.add('switching');
+    setTimeout(function() {
+      var html = document.documentElement;
+      html.setAttribute('lang', lang);
+      html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+
+      var elems = document.querySelectorAll('[data-en]');
+      elems.forEach(function(el) {
+        var val = el.getAttribute('data-' + lang);
+        if (val !== null) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = val;
+          } else {
+            el.innerHTML = val;
+          }
+        }
+      });
+
+      document.body.classList.remove('switching');
+    }, 150);
+  }
+</script>
+
+</body>
+</html>
